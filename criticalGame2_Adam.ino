@@ -9,7 +9,8 @@ int press2 = 0;
 int dis1 = 0;
 int dis2 = 0;
 int disQ = 0;
-
+int score1 =0;
+int score2 =0;
 #include <LiquidCrystal.h> 
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 
@@ -81,9 +82,16 @@ void loop() {
         // player 1 pressed the button before the interval elapsed - CHEATER
         if (gameStarted == 0) {
           lcd.clear();
-          lcd.print("Player 1");
+          lcd.print("Player 1 Cheated!");
+          
           lcd.setCursor(0,1);
-          lcd.print("Disqualifed!");
+          
+          score1--;
+          
+          lcd.print("score: ");
+          lcd.print(score1);
+          lcd.print(" to ");
+          lcd.print(score2);
           delay(2000);
           lcd.clear();
         }
@@ -96,12 +104,24 @@ void loop() {
           digitalWrite(8,0);
           lcd.setCursor(1,0);
           lcd.print("Player 1 wins!");
+          lcd.setCursor(0,1);
+          
+          score1++;
+          
+          lcd.print("score: ");
+          lcd.print(score1);
+          lcd.print(" to ");
+          lcd.print(score2);
           delay(2000);
           lcd.clear();
           lcd.setCursor(6,0);
           lcd.print(playerOne);
           lcd.setCursor(2,1);
           lcd.print("Milliseconds");
+          
+          
+          Serial.print("score1: ");
+          Serial.println(score1);
           delay(2000);
         }
       }
@@ -110,9 +130,15 @@ void loop() {
         // player 2 pressed the button before the interval elapsed - CHEATER
         if (gameStarted == 0) {
           lcd.clear();
-          lcd.print("Player 2");
+          lcd.print("Player 2 Cheated");
           lcd.setCursor(0,1);
-          lcd.print("Disqualifed!");
+          
+          score2--;
+          
+          lcd.print("score: ");
+          lcd.print(score1);
+          lcd.print(" to ");
+          lcd.print(score2);
           delay(2000);
           lcd.clear();
         }
@@ -125,12 +151,26 @@ void loop() {
           digitalWrite(8,0);
           lcd.setCursor(1,0);
           lcd.print("Player 2 wins!");
+          lcd.setCursor(0,1);
+          
+          score2++;
+          
+          lcd.print("score: ");
+          lcd.print(score1);
+          lcd.print(" to ");
+          lcd.print(score2);
           delay(2000);
           lcd.clear();
           lcd.setCursor(6,0);
           lcd.print(playerTwo);
           lcd.setCursor(2,1);
           lcd.print("Milliseconds");
+          
+
+         
+         
+          Serial.print("score2: ");
+          Serial.println(score2);
           delay(2000);
         }
       }
